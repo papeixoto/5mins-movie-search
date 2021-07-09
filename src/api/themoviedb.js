@@ -9,7 +9,7 @@ export const searchMovies = async query => {
   const response = await fetch(
     encodeURI(`${API_URL}/search/movie?query=${query}&api_key=${API_KEY}`),
   );
-  let json = await response.json();
+  const json = await response.json();
   // when there are no movies the API returns no results
   return json?.results || [];
 };
@@ -19,6 +19,6 @@ export const searchMovies = async query => {
  */
 export const getMovieById = async id => {
   const response = await fetch(`${API_URL}/movie/${id}?api_key=${API_KEY}`);
-  let json = await response.json();
+  const json = await response.json();
   return json;
 };

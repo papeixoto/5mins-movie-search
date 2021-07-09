@@ -10,16 +10,12 @@ const MovieScreen = ({navigation, route}) => {
   useEffect(() => {
     const getMovie = async () => {
       const movieId = route.params.movieId;
-      console.log('antes de chamar');
       const response = await getMovieById(movieId);
-      console.log(response);
       setMovie(response);
-      console.log('321');
     };
     try {
       getMovie();
     } catch (error) {
-      console.log('123');
       console.error(error);
       Alert.alert('Error', 'Error fetching movie, please try again');
     }

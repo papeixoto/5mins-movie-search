@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {Alert, Text, View, StyleSheet, FlatList, Image} from 'react-native';
+import {Alert, View, StyleSheet, FlatList} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SearchBar} from 'react-native-elements';
 
+import SearchMoviesEmptyView from '../components/SearchMoviesEmptyView';
+import NoResultsEmptyView from '../components/NoResultsEmptyView';
 import MovieListItem from '../components/MovieListItem.js';
 
 import {searchMovies} from '../api/themoviedb.js';
@@ -50,30 +52,22 @@ const HomeScreen = ({navigation}) => {
             renderItem={({item}) => (
               <MovieListItem
                 onPress={() => {
-                  console.log('press');
                   navigation.navigate('Movie', {movieId: item.id});
                 }}
                 movie={item}
+                key={item.id}
               />
             )}
           />
         ) : null}
         {!searchText ? (
           <View style={styles.contentContainer}>
-            <Image
-              style={styles.image}
-              source={require('../assets/search_movie.png')}
-            />
-            <Text style={styles.tipText}>Search for a movie</Text>
+            <SearchMoviesEmptyView />
           </View>
         ) : null}
         {searchText && !movies.length ? (
           <View style={styles.contentContainer}>
-            <Image
-              style={styles.image}
-              source={require('../assets/no_results.png')}
-            />
-            <Text style={styles.tipText}>No Results :(</Text>
+            <NoResultsEmptyView />
           </View>
         ) : null}
       </View>

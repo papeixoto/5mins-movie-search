@@ -18,7 +18,6 @@ const monthNumberToText = {
 
 const MovieListItem = ({movie, onPress}) => {
   const formatDate = date => {
-    console.log(date);
     const [year, month] = date.split('-');
     return `${monthNumberToText[month]} of ${year}`;
   };
